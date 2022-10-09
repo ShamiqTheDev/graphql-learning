@@ -1,0 +1,47 @@
+1- First command to initialize node package
+npm init
+
+2- Inntalling dev dependencies
+npm install --save-dev babel-cli babel-preset-env babel-preset-stage-0
+
+3- Installing main dependencies for graphql
+npm install express express-graphql graphql nodemon
+
+    - nodemon is basically restarts the server whenever the code is updated
+
+4- create an index.js and .babelrc file in root of project
+
+5- Go to package.json file and in scripts object, add another item 
+    after test command, Add comma and add the folloqing code
+    "start": "nodemon ./index.js --exec babel-node -e js"
+    - The above command allows us to start node js server with "npm start"
+      which will allow us to use latest javascript ES6 syntax
+
+6- write in .babelrc file
+    add preset onject and add as an cerate an array with "env" and "stage-0"
+    -close the file done for now
+
+7- Creating express server in index.js file
+    
+=================================================
+
+8- Create a file namely schema.js in the root
+    - import buildSchema from graphql
+        - pass in the gql query as a parameter
+    - and the last export the schema const
+
+9- Go to index.js import this schema from schema.js as ./schema
+    - then import graphqlHTTP from 'express-graphql'
+    - set a static response with the type described in schema.js as const root
+    - then create a route for graphql as app.use('/graphql', pass graphqlHTTP with config obj);
+    - test /graphql endpoint on the server
+
+===============================================================================================
+
+10- starting from redefining our schema
+    - defiing the Friend type and its parameters
+    - defining in query that if the query is type friend then friend: Friend
+
+11- Goto index.js remove hello resolver to a Friend resolver
+    - resolver typically resolves something which returns data from schema
+    
